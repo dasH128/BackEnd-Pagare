@@ -10,7 +10,7 @@ namespace Finanzas.Entity
         public string Correo {get; set; }
         public string Telefono {get; set; }
 
-        public int IdDistrito {get; set;}
+        public int DistritoId {get; set;}
         public Distrito Distrito {get; set;}
     }
 }
