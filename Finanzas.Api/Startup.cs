@@ -36,6 +36,14 @@ namespace Finanzas.Api
             
             services.AddTransient<IUsuarioRepository, UsuarioRepository> ();
             services.AddTransient<IUsuarioService, UsuarioService> ();
+            services.AddTransient<ILetraRepository, LetraRepository> ();
+            services.AddTransient<ILetraService, LetraService> ();
+            services.AddTransient<IGiradoRepository, GiradoRepository> ();
+            services.AddTransient<IGiradoService, GiradoService> ();
+            services.AddTransient<IGiradoEmpresaRepository, GiradoEmpresaRepository> ();
+            services.AddTransient<IGiradoEmpresaService, GiradoEmpresaService> ();
+            services.AddTransient<IGiradoPersonaRepository, GiradoPersonaRepository> ();
+            services.AddTransient<IGiradoPersonaService, GiradoPersonaService> ();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
