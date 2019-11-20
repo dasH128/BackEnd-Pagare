@@ -37,7 +37,7 @@ namespace Finanzas.Api.Controllers
 
         [HttpPost("validate")]
         public ActionResult ValidarCuenta([FromBody] Usuario usuario){
-            return Ok();
+            return Ok(usuarioService.ValidarUsuario(usuario.Correo, usuario.Clave));
         }
     }
 }
