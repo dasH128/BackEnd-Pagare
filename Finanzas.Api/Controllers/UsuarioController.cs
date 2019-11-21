@@ -39,5 +39,21 @@ namespace Finanzas.Api.Controllers
         public ActionResult ValidarCuenta([FromBody] Usuario usuario){
             return Ok(usuarioService.ValidarUsuario(usuario.Correo, usuario.Clave));
         }
+
+        [HttpPost("registrar")]
+        public ActionResult RegistrarCuenta([FromBody] Usuario usuario){
+            bool registrardo = usuarioService.Guardar(usuario);
+            Usuario resultUsuario = new Usuario();
+
+            if(registrardo){
+                resultUsuario = usuarioService.ValidarUsuario(usuario.Correo, usuario.Clave);
+            }else{
+                resultUsuario = null;
+            }
+            return Ok(resultUsuario);
+            //return Ok(usuarioService.ValidarUsuario(usuario.Correo, usuario.Clave));
+        }
+
+        
     }
 }
