@@ -14,8 +14,10 @@ namespace Finanzas.Repository.Context
         public DbSet<Letra> Letra { get; set; }
         public DbSet<Girado> Girado { get; set; }
         public DbSet<GiradoEmpresa> GiradoEmpresa { get; set; }
-        public DbSet<GiradoPersona> DeGiradoPersonapartamento { get; set; }
+        public DbSet<GiradoPersona> GiradoPersona { get; set; }
+        public DbSet<HistorialLetra> HistorialLetra { get; set; }
 
+        
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options):base(options){
             
         }

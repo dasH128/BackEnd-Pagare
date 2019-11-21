@@ -26,7 +26,7 @@ namespace Finanzas.Service.Implementation
 
         public bool Guardar(Letra entity)
         {
-            throw new System.NotImplementedException();
+            return letraRepository.Guardar(entity);
         }
 
         public IEnumerable<Letra> Listar()

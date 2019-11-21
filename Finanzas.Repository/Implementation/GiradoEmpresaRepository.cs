@@ -26,7 +26,13 @@ namespace Finanzas.Repository.Implementation
 
         public bool Guardar(GiradoEmpresa entity)
         {
-            throw new System.NotImplementedException();
+            try{
+                context.Add(entity);
+                context.SaveChanges();
+            }catch(System.Exception){
+                return false;
+            }
+            return true;
         }
 
         public IEnumerable<GiradoEmpresa> Listar()

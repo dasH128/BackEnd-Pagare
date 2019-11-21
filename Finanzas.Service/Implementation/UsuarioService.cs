@@ -37,5 +37,10 @@ namespace Finanzas.Service.Implementation
         {
             return usuarioRepository.ListarPorId(id);
         }
+
+        public Usuario ValidarUsuario(string correo, string contrasena)
+        {
+            return usuarioRepository.ValidarUsuario(correo, contrasena);
+        }
     }
 }

@@ -6,15 +6,15 @@ using Finanzas.Service.Interface;
 
 namespace Finanzas.Service.Implementation
 {
-    public class GiradoPersonaService : IGiradoPersonaService
+    public class HistorialLetraService : IHistorialLetraService
     {
-        private IGiradoPersonaRepository giradoPersonaRepository;
-        public GiradoPersonaService(IGiradoPersonaRepository giradoPersonaRepository){
-            this.giradoPersonaRepository=giradoPersonaRepository;
+        private IHistorialLetraRepository historialLetraRepository;
+        public HistorialLetraService(IHistorialLetraRepository historialLetraRepository){
+            this.historialLetraRepository=historialLetraRepository;
         }
 
 
-        public bool Actualizar(GiradoPersona entity)
+        public bool Actualizar(HistorialLetra entity)
         {
             throw new System.NotImplementedException();
         }
@@ -24,17 +24,17 @@ namespace Finanzas.Service.Implementation
             throw new System.NotImplementedException();
         }
 
-        public bool Guardar(GiradoPersona entity)
+        public bool Guardar(HistorialLetra entity)
         {
-           return giradoPersonaRepository.Guardar(entity);
+            return historialLetraRepository.Guardar(entity);
         }
 
-        public IEnumerable<GiradoPersona> Listar()
+        public IEnumerable<HistorialLetra> Listar()
         {
             throw new System.NotImplementedException();
         }
 
-        public GiradoPersona ListarPorId(int id)
+        public HistorialLetra ListarPorId(int id)
         {
             throw new System.NotImplementedException();
         }

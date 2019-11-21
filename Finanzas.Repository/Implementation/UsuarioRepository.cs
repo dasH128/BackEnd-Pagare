@@ -50,5 +50,18 @@ namespace Finanzas.Repository.Implementation
             }
             return resultado;
         }
+
+        public Usuario ValidarUsuario(string correo, string contrasena)
+        {
+            var resultado = new Usuario();
+            try{
+                resultado = context.Usuario.Single(p => p.Correo == correo && p.Clave == contrasena);
+
+            }catch(System.Exception){
+                // throw;
+            }
+            return resultado;
+        }
+
     }
 }

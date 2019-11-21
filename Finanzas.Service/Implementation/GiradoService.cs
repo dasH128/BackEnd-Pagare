@@ -25,7 +25,7 @@ namespace Finanzas.Service.Implementation
 
         public bool Guardar(Girado entity)
         {
-            throw new System.NotImplementedException();
+            return giradoRepository.Guardar(entity);
         }
 
         public IEnumerable<Girado> Listar()

@@ -6,14 +6,15 @@ using Finanzas.Repository.Interface;
 
 namespace Finanzas.Repository.Implementation
 {
-    public class GiradoRepository : IGiradoRepository
+    public class HistorialLetraRepository : IHistorialLetraRepository
     {
         private ApplicationDbContext context;
-        public GiradoRepository(ApplicationDbContext context){
+        public HistorialLetraRepository(ApplicationDbContext context){
             this.context = context;
         }
 
-        public bool Actualizar(Girado entity)
+        
+        public bool Actualizar(HistorialLetra entity)
         {
             throw new System.NotImplementedException();
         }
@@ -23,7 +24,7 @@ namespace Finanzas.Repository.Implementation
             throw new System.NotImplementedException();
         }
 
-        public bool Guardar(Girado entity)
+        public bool Guardar(HistorialLetra entity)
         {
             try{
                 context.Add(entity);
@@ -34,12 +35,12 @@ namespace Finanzas.Repository.Implementation
             return true;
         }
 
-        public IEnumerable<Girado> Listar()
+        public IEnumerable<HistorialLetra> Listar()
         {
             throw new System.NotImplementedException();
         }
 
-        public Girado ListarPorId(int id)
+        public HistorialLetra ListarPorId(int id)
         {
             throw new System.NotImplementedException();
         }
