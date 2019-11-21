@@ -13,3 +13,9 @@ INSERT INTO Provincia (Nombre, DepartamentoId) VALUES ('Lima', 1)
 
 -- Tabla Distrito
 INSERT INTO Distrito (Nombre, ProvinciaId) VALUES ('Lima', 1)
+
+
+SELECT * FROM Moneda
+
+INSERT INTO Moneda (Nombre, Valor) VALUES ('Soles', 1.00 )
+INSERT INTO Moneda (Nombre, Valor) VALUES ('Dolares', 3.38 )

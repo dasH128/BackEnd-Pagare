@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Finanzas.Repository.Migrations
 {
-    public partial class versionDB000 : Migration
+    public partial class BDv001 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -28,7 +28,7 @@ namespace Finanzas.Repository.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Nombre = table.Column<string>(nullable: true),
-                    Valor = table.Column<string>(nullable: true)
+                    Valor = table.Column<float>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -80,29 +80,6 @@ namespace Finanzas.Repository.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "DeGiradoPersonapartamento",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    GiradoId = table.Column<int>(nullable: false),
-                    Nombre = table.Column<string>(nullable: true),
-                    apellidoPaterno = table.Column<string>(nullable: true),
-                    apellidoMaterno = table.Column<string>(nullable: true),
-                    Dni = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DeGiradoPersonapartamento", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_DeGiradoPersonapartamento_Girado_GiradoId",
-                        column: x => x.GiradoId,
-                        principalTable: "Girado",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "GiradoEmpresa",
                 columns: table => new
                 {
@@ -117,6 +94,29 @@ namespace Finanzas.Repository.Migrations
                     table.PrimaryKey("PK_GiradoEmpresa", x => x.Id);
                     table.ForeignKey(
                         name: "FK_GiradoEmpresa_Girado_GiradoId",
+                        column: x => x.GiradoId,
+                        principalTable: "Girado",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "GiradoPersona",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    GiradoId = table.Column<int>(nullable: false),
+                    Nombre = table.Column<string>(nullable: true),
+                    apellidoPaterno = table.Column<string>(nullable: true),
+                    apellidoMaterno = table.Column<string>(nullable: true),
+                    Dni = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_GiradoPersona", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_GiradoPersona_Girado_GiradoId",
                         column: x => x.GiradoId,
                         principalTable: "Girado",
                         principalColumn: "Id",
@@ -211,10 +211,45 @@ namespace Finanzas.Repository.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_DeGiradoPersonapartamento_GiradoId",
-                table: "DeGiradoPersonapartamento",
-                column: "GiradoId");
+            migrationBuilder.CreateTable(
+                name: "HistorialLetra",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    FechaCreacion = table.Column<DateTime>(nullable: false),
+                    FechaGiro = table.Column<DateTime>(nullable: false),
+                    FechaVencimiento = table.Column<DateTime>(nullable: false),
+                    FechaDescuento = table.Column<DateTime>(nullable: false),
+                    ValorNominal = table.Column<float>(nullable: false),
+                    ValorNeto = table.Column<float>(nullable: false),
+                    ValorEntregado = table.Column<float>(nullable: false),
+                    ValorRecivido = table.Column<float>(nullable: false),
+                    Descuento = table.Column<float>(nullable: false),
+                    CostoGastoInicial = table.Column<float>(nullable: false),
+                    CostoGastoFinal = table.Column<float>(nullable: false),
+                    DiasDescontar = table.Column<float>(nullable: false),
+                    Tea = table.Column<float>(nullable: false),
+                    Tcea = table.Column<float>(nullable: false),
+                    LetraId = table.Column<int>(nullable: false),
+                    MonedaId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HistorialLetra", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_HistorialLetra_Letra_LetraId",
+                        column: x => x.LetraId,
+                        principalTable: "Letra",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_HistorialLetra_Moneda_MonedaId",
+                        column: x => x.MonedaId,
+                        principalTable: "Moneda",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Distrito_ProvinciaId",
@@ -230,6 +265,21 @@ namespace Finanzas.Repository.Migrations
                 name: "IX_GiradoEmpresa_GiradoId",
                 table: "GiradoEmpresa",
                 column: "GiradoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_GiradoPersona_GiradoId",
+                table: "GiradoPersona",
+                column: "GiradoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_HistorialLetra_LetraId",
+                table: "HistorialLetra",
+                column: "LetraId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_HistorialLetra_MonedaId",
+                table: "HistorialLetra",
+                column: "MonedaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Letra_DepartamentoId",
@@ -265,10 +315,13 @@ namespace Finanzas.Repository.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "DeGiradoPersonapartamento");
+                name: "GiradoEmpresa");
 
             migrationBuilder.DropTable(
-                name: "GiradoEmpresa");
+                name: "GiradoPersona");
+
+            migrationBuilder.DropTable(
+                name: "HistorialLetra");
 
             migrationBuilder.DropTable(
                 name: "Letra");

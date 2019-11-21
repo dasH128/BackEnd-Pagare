@@ -113,7 +113,54 @@ namespace Finanzas.Repository.Migrations
 
                     b.HasIndex("GiradoId");
 
-                    b.ToTable("DeGiradoPersonapartamento");
+                    b.ToTable("GiradoPersona");
+                });
+
+            modelBuilder.Entity("Finanzas.Entity.HistorialLetra", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<float>("CostoGastoFinal");
+
+                    b.Property<float>("CostoGastoInicial");
+
+                    b.Property<float>("Descuento");
+
+                    b.Property<float>("DiasDescontar");
+
+                    b.Property<DateTime>("FechaCreacion");
+
+                    b.Property<DateTime>("FechaDescuento");
+
+                    b.Property<DateTime>("FechaGiro");
+
+                    b.Property<DateTime>("FechaVencimiento");
+
+                    b.Property<int>("LetraId");
+
+                    b.Property<int>("MonedaId");
+
+                    b.Property<float>("Tcea");
+
+                    b.Property<float>("Tea");
+
+                    b.Property<float>("ValorEntregado");
+
+                    b.Property<float>("ValorNeto");
+
+                    b.Property<float>("ValorNominal");
+
+                    b.Property<float>("ValorRecivido");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LetraId");
+
+                    b.HasIndex("MonedaId");
+
+                    b.ToTable("HistorialLetra");
                 });
 
             modelBuilder.Entity("Finanzas.Entity.Letra", b =>
@@ -157,7 +204,7 @@ namespace Finanzas.Repository.Migrations
 
                     b.Property<string>("Nombre");
 
-                    b.Property<string>("Valor");
+                    b.Property<float>("Valor");
 
                     b.HasKey("Id");
 
@@ -237,6 +284,19 @@ namespace Finanzas.Repository.Migrations
                     b.HasOne("Finanzas.Entity.Girado", "Girado")
                         .WithMany()
                         .HasForeignKey("GiradoId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("Finanzas.Entity.HistorialLetra", b =>
+                {
+                    b.HasOne("Finanzas.Entity.Letra", "Letra")
+                        .WithMany()
+                        .HasForeignKey("LetraId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("Finanzas.Entity.Moneda", "Moneda")
+                        .WithMany()
+                        .HasForeignKey("MonedaId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 

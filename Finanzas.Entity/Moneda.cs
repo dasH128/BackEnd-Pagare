@@ -4,6 +4,6 @@ namespace Finanzas.Entity
     {
         public int Id {get; set; }
         public string Nombre {get; set; }
-        public string Valor {get; set; }
+        public float Valor {get; set; }
     }
 }
