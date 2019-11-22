@@ -42,5 +42,20 @@ namespace Finanzas.Service.Implementation
         {
             return usuarioRepository.ValidarUsuario(correo, contrasena);
         }
+
+        public IEnumerable<Departamento> ListarDepartamento(){
+            return usuarioRepository.ListarDepartamento();
+        }
+
+        public IEnumerable<Provincia> ListarProvincia(int idDepartamento){
+            return usuarioRepository.ListarProvincia(idDepartamento);
+        }
+        public IEnumerable<Distrito> ListarDistrito(int idProvincia){
+            return usuarioRepository.ListarDistrito(idProvincia);
+        }
+
+        public  IEnumerable<Moneda> ListarMoneda(){
+            return usuarioRepository.ListarMoneda();
+        }
     }
 }

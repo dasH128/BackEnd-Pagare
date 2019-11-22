@@ -38,5 +38,8 @@ namespace Finanzas.Service.Implementation
         {
             throw new System.NotImplementedException();
         }
+        public GiradoEmpresa GiradoData(GiradoEmpresa giradoEmpresa){
+            return giradoEmpresaRepository.GiradoData(giradoEmpresa);
+        }
     }
 }

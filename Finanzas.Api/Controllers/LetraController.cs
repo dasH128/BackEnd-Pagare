@@ -12,6 +12,10 @@ namespace Finanzas.Api.Controllers
         public LetraController(ILetraService letraService){
             this.letraService = letraService;
         }
+        [HttpGet]
+        public ActionResult Get(){
+            return Ok(letraService.Listar());
+        }
 
         [HttpPost]
         public ActionResult Post([FromBody] Letra letra){

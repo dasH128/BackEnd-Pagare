@@ -3,6 +3,7 @@ using System.Linq;
 using Finanzas.Entity;
 using Finanzas.Repository.Context;
 using Finanzas.Repository.Interface;
+using Microsoft.EntityFrameworkCore;
 
 namespace Finanzas.Repository.Implementation
 {
@@ -26,6 +27,7 @@ namespace Finanzas.Repository.Implementation
 
         public bool Guardar(Letra entity)
         {
+
             try{
                 context.Add(entity);
                 context.SaveChanges();
@@ -37,7 +39,14 @@ namespace Finanzas.Repository.Implementation
 
         public IEnumerable<Letra> Listar()
         {
-            throw new System.NotImplementedException();
+            var resultado = new List<Letra>();
+
+            try{
+                resultado = context.Letra.Include(l =>l.Girado).Include(a =>a.Usuario).Include(m=>m.Moneda).ToList();
+            }catch(System.Exception){
+                throw;
+            }
+            return resultado;
         }
 
         public Letra ListarPorId(int id)

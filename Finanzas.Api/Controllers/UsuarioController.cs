@@ -54,6 +54,23 @@ namespace Finanzas.Api.Controllers
             //return Ok(usuarioService.ValidarUsuario(usuario.Correo, usuario.Clave));
         }
 
+
+        [HttpGet("departamento")]
+        public ActionResult GetDepartamentos(){
+            return Ok(usuarioService.ListarDepartamento());
+        }
+        [HttpGet("provincia/{idDepartamento}")]
+        public ActionResult GetProvincias([FromRoute] int idDepartamento){
+            return Ok(usuarioService.ListarProvincia(idDepartamento));
+        }
+        [HttpGet("distrito/{idProvincia}")]
+        public ActionResult GetDistritos([FromRoute] int idProvincia){
+            return Ok(usuarioService.ListarDistrito(idProvincia));
+        }
+        [HttpGet("moneda")]
+        public ActionResult GetMonedas(){
+            return Ok(usuarioService.ListarMoneda());
+        }
         
     }
 }

@@ -17,5 +17,10 @@ namespace Finanzas.Api.Controllers
         public ActionResult Post([FromBody] GiradoEmpresa giradoEmpresa){
             return Ok(giradoEmpresaService.Guardar(giradoEmpresa));
         }
+
+        [HttpPost("insertar")]
+        public ActionResult PostInsert([FromBody] GiradoEmpresa giradoEmpresa){
+            return Ok(giradoEmpresaService.GiradoData(giradoEmpresa));
+        }
     }
 }

@@ -63,5 +63,48 @@ namespace Finanzas.Repository.Implementation
             return resultado;
         }
 
+        public IEnumerable<Departamento> ListarDepartamento(){
+            var resultado = new List<Departamento>();
+
+            try{
+                resultado = context.Departamento.ToList();
+            }catch(System.Exception){
+                throw;
+            }
+            return resultado;
+        }
+
+        public IEnumerable<Provincia> ListarProvincia(int idDepartamento){
+            var resultado = new List<Provincia>();
+
+            try{
+                resultado = context.Provincia.Where(p=> p.DepartamentoId == idDepartamento).ToList();
+            }catch(System.Exception){
+                throw;
+            }
+            return resultado;
+        }
+        
+        public IEnumerable<Distrito> ListarDistrito(int idProvincia){
+            var resultado = new List<Distrito>();
+
+            try{
+                resultado = context.Distrito.Where(p=> p.ProvinciaId == idProvincia).ToList();
+            }catch(System.Exception){
+                throw;
+            }
+            return resultado;
+        }
+
+        public IEnumerable<Moneda> ListarMoneda(){
+            var resultado = new List<Moneda>();
+
+            try{
+                resultado = context.Moneda.ToList();
+            }catch(System.Exception){
+                throw;
+            }
+            return resultado;
+        }
     }
 }

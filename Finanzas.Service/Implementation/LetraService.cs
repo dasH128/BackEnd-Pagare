@@ -31,7 +31,7 @@ namespace Finanzas.Service.Implementation
 
         public IEnumerable<Letra> Listar()
         {
-            throw new System.NotImplementedException();
+            return letraRepository.Listar();
         }
 
         public Letra ListarPorId(int id)

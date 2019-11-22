@@ -24,6 +24,8 @@ namespace Finanzas.Repository.Implementation
             throw new System.NotImplementedException();
         }
 
+        
+
         public bool Guardar(GiradoPersona entity)
         {
             try{
